@@ -1,0 +1,45 @@
+<div class="container myList" scroll-watch page-height-watch>
+    <!--scroll-watch-->
+    <div class="row">
+        <br><br><br>
+        <!--<i class="fa fa-cog" aria-hidden="true" style="font-size: 18px;"></i>-->
+        <br><br>
+    </div>
+    <div class="row">
+        <a class="btn btn-success create col-md-1" ng-href="#!/create"><i class="fa fa-user-plus" aria-hidden="true"></i>New</a>
+        <button class="btn btn-primary col-md-1 viewAll" ng-click="doViewAll()">View All</button>
+        <input id="search1" class="img-rounded col-md-offset-7 col-md-3" type="search" placeholder="Search by keywords" ng-model="text">
+    </div>
+    <div class="table-responsive row">
+        <table class="table table-hover table-striped">
+            <tr>
+                <th class="col-md-2">Image</th>
+                <th class="col-md-2">Name
+                    <i class="fa fa-sort-alpha-asc" ng-class="{active: activeSortingRule === 0}" ng-click="sort(0)" aria-hidden="true"></i>
+                    <i class="fa fa-sort-alpha-desc" ng-class="{active: activeSortingRule === 1}" ng-click="sort(1)" aria-hidden="true"></i>
+                </th>
+                <th>Sex</th>
+                <th>Title<i class="fa fa-sort-alpha-asc" aria-hidden="true" ng-class="{active: activeSortingRule === 2}" ng-click="sort(2)"></i>
+                    <i class="fa fa-sort-alpha-desc" aria-hidden="true" ng-class="{active: activeSortingRule === 3}" ng-click="sort(3)"></i>
+                </th>
+                <th class="col-md-2">Manager
+                    <i class="fa fa-sort-alpha-asc" aria-hidden="true" ng-class="{active: activeSortingRule === 4}" ng-click="sort(4)"></i>
+                    <i class="fa fa-sort-alpha-desc" aria-hidden="true" ng-class="{active: activeSortingRule === 5}" ng-click="sort(5)"></i></th>
+                <th class="col-md-2">DirectReports
+                    <i class="fa fa-sort-numeric-asc" aria-hidden="true" ng-class="{active: activeSortingRule === 6}" ng-click="sort(6)"></i>
+                    <i class="fa fa-sort-numeric-desc" aria-hidden="true"  ng-class="{active: activeSortingRule === 7}" ng-click="sort(7)"></i></th>
+                <th>Remove</th>
+            </tr>
+            <tr class="myRow" ng-repeat="emp in currentEmps track by $index" hover-watch>
+                <td><a ng-href="#!/view/{{emp.id}}"><img ng-src="{{emp.img}}" alt="{{emp.name}}'s image" height="100" width="100"></a></td>
+                <td><a ng-href="#!/view/{{emp.id}}">{{emp.name}}</a><i class="fa fa-pencil" title="edit {{emp.name}}" aria-hidden="true" ng-click="doEditEmp(emp.id)"></i></td>
+                <td>{{emp.sex}}</td>
+                <td>{{emp.title}}</td>
+                <td><a href="#!/view/{{emp.manager.id}}">{{emp.manager.name}}</a></td>
+                <!--emp.manager right now is an object after transformation of function process emp-->
+                <td><a href ng-click="doViewDirectReports(emp)">{{emp.directReports.length}}</a></td>
+                <td><i class="fa fa-trash" aria-hidden="true" ng-click="removeEmp(emp.id)"></i></td>
+            </tr>
+        </table>
+    </div>
+</div>
