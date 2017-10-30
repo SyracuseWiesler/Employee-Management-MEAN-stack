@@ -1,0 +1,92 @@
+body {
+    background: url("../img/chinese-pattern.jpeg");
+
+}
+.container{
+    background: white;
+    /*background: url("../img/china.jpg");*/
+    /*height: 600px;*/
+}
+.products {
+    /*display: flex;*/
+    /*justify-content: space-around;*/
+    /*align-content: space-around;*/
+    width: 100%;
+    margin: 0 auto;
+}
+.products .item{
+    width: 250px;
+    height: 250px;
+    /*background: grey;*/
+    display: inline-block;
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 10px;
+}
+.item img {
+    width: 180px;
+    height: 180px;
+    display: block;
+    margin: 0 auto;
+}
+.item p{
+    margin: 0;
+    padding: 0;
+}
+.item span.glyphicon-star-empty {
+    position: relative;
+    left: -3px;
+}
+.item a {
+    text-decoration: none;
+    font-weight: bold;
+    font-style: italic;
+}
+.item a.review {
+    float: right;
+}
+.item a:hover{
+    cursor: pointer;
+    color: green;
+}
+.item .price{
+    display: inline;
+}
+.item h4 {
+    margin: 0;
+    padding: 0;
+}
+.item .price {
+    color: darkred;
+}
+.glyphicon-star, .glyphicon-star-empty {
+    color: rgb(247, 229, 2);
+}
+.item a:nth-child(2) span:hover {
+    color: black;
+}
+.item .glyphicon-trash:hover {
+    color: rgb(249, 60, 2);
+}
+.footer li:hover {
+    cursor: pointer;
+}
+.stars-progress .progress{
+    margin: 0 0 3px 0;
+}
+.progress-bar{
+    background: rgb(247, 229, 2);
+}
+.reviews li {
+    display: block;
+    height: 65px;
+    width: 460px;
+    border: 1px solid grey;
+    background: whitesmoke;
+}
+.more:hover{
+    cursor: pointer;
+}
+.glyphicon-chevron-down, .glyphicon-chevron-up:hover {
+    cursor: pointer;
+}

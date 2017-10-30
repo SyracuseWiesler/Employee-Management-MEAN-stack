@@ -1,0 +1,45 @@
+<div>
+    <div>
+        <h3 style="margin: 0; padding: 0; font-style: italic; display: inline;" ng-click="canVote = ! canVote">Vote for weekly Bestsellers <span class="glyphicon {{canVote ? 'glyphicon-triangle-top': 'glyphicon-triangle-bottom'}}"></span></h3>
+        <ul style="list-style: none none outside" ng-show="canVote">
+            <li ng-repeat="x in hottest" style="display:block; height: 100px; border: 1px solid rgb(245, 245, 245); padding-top: 15px; margin-top: 5px; background: rgb(245, 245,245)">
+                <div style="width: 10px; margin: 0 0 0 5%; padding: 0; position: relative; display:inline-block;">
+                    <span class="glyphicon glyphicon-chevron-up" ng-click="increase($index)"></span>
+                    <span class="badge">{{x.total}}</span>
+                    <span class="glyphicon glyphicon-chevron-down" ng-click="decrease($index)"></span>
+                </div>
+                <span style="display: inline-block; margin:0 0 0 35%; height: 20px; width: 200px; position: relative; top: -10px;"><strong><i>{{x.name | uppercase}}: {{x.price | currency}}</i></strong></span>
+            </li>
+        </ul>
+        <hr>
+    </div>
+    <div class="products" style="height: 600px;">
+        <h3 style="margin: 0; padding: 0; font-style: italic; display: inline;">Products</h3>
+        <a href="#!/create" class="btn btn-success btn-sm">NEW</a>
+        <input type="search" placeholder="Search a product" class="img-rounded" ng-model="text" style="width: 300px; margin: 0 0 0 200px;">
+        <label for="select" style="float: right; margin: 0;"><i>sort by: </i>
+            <select name="select" id="select" ng-model="selectedRule" class="img-rounded" style="outline:none">
+                <option ng-repeat="x in sortingRules" value="{{$index}}">{{x[0]}}:{{getSortingRuleInHTML(x)}}</option>
+            </select>
+        </label>
+        <hr style="margin: 10px 0 0 0;">
+        <div class="item" ng-repeat="y in currentProducts">
+            <a href="#!/edit/productIndex/{{$index}}"><img ng-src="{{y.img}}" alt="No photo"></a>
+            <a href="#!/edit/productIndex/{{$index}}" style="position: relative; top: -180px; color: grey; opacity: 0.5;"><span><span class="glyphicon glyphicon-pencil"></span>edit</span></a>
+            <span class="glyphicon glyphicon-trash" style="position: relative; top: -180px; right: -150px;" ng-click="remove($index)"></span>
+            <div >
+                <h4><a href="#!/edit/productIndex/{{$index}}">{{y.name}}</a></h4>
+                <span class="glyphicon glyphicon-star" ng-repeat="x in y.fullStars"></span>
+                <span class="glyphicon glyphicon-star-empty" ng-repeat="z in y.emptyStars"></span>
+                <span>({{y.score}})</span>
+            </div>
+            <div class="price">{{y.price | currency}}</div>
+            <a class="review">add review</a>
+        </div>
+    </div>
+    <div class="footer" style="margin: 0 30% 0">
+        <ul class="pagination">
+            <li ng-class="p.className" ng-repeat="p in pages" ng-click="setCurPage(pages[$index])"><a>{{p.symbol}}</a></li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="footer2" style="margin: 100px 0 0 30px; height: 500px;">
+    <form class="form-horizontal" role="form" name="myForm" novalidate>
+        <div class="form-group">
+            <label for="name" class="col-md-2 control-label">Product name</label>
+            <div class="col-md-5"><input type="text" id="name" name="name" class="form-control" ng-model="name" required></div>
+            <span style="color:red" ng-show="myForm.name.$dirty && myForm.name.$invalid || myForm.name.$touched && myForm.name.$invalid">
+                      <span ng-show="myForm.name.$error.required">Product Name is Required</span>
+                    </span>
+        </div>
+        <div class="form-group">
+            <label for="price" class="col-md-2 control-label">Price</label>
+            <div class="col-md-4 input-group" style="padding-left: 15px;">
+                <span class="input-group-addon">$</span>
+                <input type="number" min="0" id="price" class="form-control" ng-model="price" required>
+            </div>
+            <span style="color:red" ng-show="myForm.price.$dirty && myForm.price.$invalid || myForm.price.$touched && myForm.price.$invalid">
+                      <span ng-show="myForm.price.$error.required">Product Price is Required</span>
+                    </span>
+        </div>
+        <div class="form-group">
+            <label for="url" class="col-md-2 control-label">Image URL</label>
+            <div class="col-md-5"><input type="text" id="url" name="url" class="form-control" ng-model="url" required></div>
+            <span style="color:red" ng-show="myForm.url.$dirty && myForm.url.$invalid || myForm.url.$touched && myForm.url.$invalid">
+                    <span ng-show="myForm.url.$error.required">Image URL is Required</span>
+                    </span>
+        </div>
+        <a ng-href="#!/" class="btn btn-success col-md-offset-2" ng-disabled="myForm.$invalid" ng-click="createProduct()">Create</a>
+    </form>
+</div>

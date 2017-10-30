@@ -1,0 +1,97 @@
+<div class="footer2" ng-style="{margin: '15px 0 0 30px',height: showReviews ? '' : '580px'}">
+    <form class="form-horizontal" role="form" name="myForm" novalidate>
+        <div class="form-group">
+            <img src="{{url}}" class="col-md-offset-2" alt="Not Available" width="180" height="180">
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-md-2 control-label">Product name</label>
+            <div class="col-md-5"><input type="text" id="name" name="name" class="form-control" ng-model="name" required></div>
+            <span style="color:red" ng-show="myForm.name.$dirty && myForm.name.$invalid || myForm.name.$touched && myForm.name.$invalid">
+                      <span ng-show="myForm.name.$error.required">Product Name is Required</span>
+                    </span>
+        </div>
+        <div class="form-group">
+            <label for="price" class="col-md-2 control-label">Price</label>
+            <div class="col-md-2 input-group" style="padding-left: 15px;">
+                <span class="input-group-addon">$</span>
+                <input type="number" min="0" id="price" class="form-control" ng-model="price" required>
+            </div>
+            <span style="color:red" ng-show="myForm.price.$dirty && myForm.price.$invalid || myForm.price.$touched && myForm.price.$invalid">
+                  <span ng-show="myForm.price.$error.required">Product Price is Required</span>
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="url" class="col-md-2 control-label">Image URL</label>
+            <div class="col-md-5"><input type="text" id="url" name="url" class="form-control" ng-model="url" required></div>
+            <span style="color:red" ng-show="myForm.url.$dirty && myForm.url.$invalid || myForm.url.$touched && myForm.url.$invalid">
+                <span ng-show="myForm.url.$error.required">Image URL is Required</span>
+            </span>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-2">
+                    <label for="url" class="col-md-12 control-label" style="margin-left: 22px;">Customer Review</label>
+                </div>
+                <div>
+                    <div class="col-md-5" style="font-size: 20px; position: relative; top: 5px;">
+                        <span class="glyphicon glyphicon-star" ng-repeat="x in p.fullStars"></span>
+                        <span class="glyphicon glyphicon-star-empty" ng-repeat="z in p.emptyStars" style="position: relative; left: -5px;"></span>
+                        <span>({{total}})</span>
+                        <div class="clearfix"></div>
+                        <span>{{p.score}} out of 5</span>
+                        <span class="glyphicon glyphicon-chevron-down" ng-hide="belowScoreShow" ng-click="belowScoreShow = !belowScoreShow"></span>
+                        <span class="glyphicon glyphicon-chevron-up" ng-show="belowScoreShow" ng-click="belowScoreShow = !belowScoreShow"></span>
+                        <br>
+                        <div class="clearfix"></div>
+                        <div ng-show="belowScoreShow">
+                            <ul style="list-style: none none outside;float:left; font-size: 16px;">
+                                <li>5 stars</li>
+                                <li>4 stars</li>
+                                <li>3 stars</li>
+                                <li>2 stars</li>
+                                <li>1 stars</li>
+                            </ul>
+                            <div class="stars-progress" style="width: 30%; float:left; margin-left: 5px;">
+                                <div class="progress" ng-repeat="bar in dedupeDummyStars">
+                                    <!--这里应该是product.stars的倒序-->
+                                    <div class="progress-bar progress-bar-success" role="progressbar"
+                                         aria-valuemin="0" aria-valuemax="100"
+                                         ng-style="{width: percentArray[$index]}"><!--bar / sum(product.stars)  style="width: 60%;-->
+                                    </div>
+                                </div>
+                            </div>
+                            <ul style="list-style: none none outside;float:left; font-size: 16px; padding-left: 5px;">
+                                <li ng-repeat="x in percentArray">{{x}}</li>
+                            </ul>
+                            <div style="line-height: 115px;"><button class="btn btn-default" style="margin-left: 100px;" ng-click="toggleReviews()">Reviews</button></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!--评论组-->
+                    <div ng-show="belowScoreShow">
+                        <div class="reviews" ng-show="showReviews">
+                            <ul style="list-style: none none outside; margin-left: 170px;">
+                                <li ng-repeat="r in shownReviews track by $index"><span style="display: block;">{{r.date}}</span><strong style="display:block;"><i>{{r.review}}</i></strong>
+                                    <!--<span class="glyphicon glyphicon-star" ng-repeat="x in r.fullStars"></span>-->
+                                    <!--<span class="glyphicon glyphicon-star-empty" ng-repeat="z in r.emptyStars" style="position: relative; left: -5px;"></span>-->
+                                    <span class="glyphicon {{$index <= r.myStarsRidge ? 'glyphicon-star' : 'glyphicon-star-empty'}}" ng-repeat="x in r.myStars track by $index"></span>
+                                </li>
+                            </ul>
+                            <!--...按照每次点击load more多加载5条评论-->
+                            <hr style="margin:0; position: relative; left: -15px;">
+                            <div class="col-md-offset-4 more" style=" border: 1px solid rgb(238, 238, 238); color: lightslategray; border-top: none; width: 83px; border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;" ng-click="loadMore()">Load More...</div>
+                            <textarea style="margin-left: 210px; resize: none;" name="content" id="content" rows="3" cols="60" placeholder="Say something ......" ng-model="myReview"></textarea>
+                            <div class="clearfix"></div>
+                            <!--这还有5个星-->
+                            <span class="glyphicon {{$index <= myStarsRidge ? 'glyphicon-star' : 'glyphicon-star-empty'}}" style="position: relative; left: 18%;" ng-repeat="x in myStars track by $index" ng-click="setMyReviewStars($index)"></span>
+                            <button class="btn btn-success" style="position:relative; left: 45%;" ng-click="sendMyReview()" ng-disabled="myReview === ''">Submit</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <a ng-href="#!/" class="btn btn-success col-md-offset-2" ng-disabled="myForm.$invalid" ng-click="saveChanges()">Save Changes</a>
+    </form>
+</div>
