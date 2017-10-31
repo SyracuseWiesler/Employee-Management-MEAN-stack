@@ -1,0 +1,26 @@
+/*each row in list, if filtered by search box, disappear animation*/
+.myList tr.myRow.ng-leave {
+    opacity: 1;
+}
+.myList tr.myRow.ng-leave.ng-leave-active {
+    opacity: 0;
+}
+.myList tr.myRow {
+    transition: 1s;
+}
+/*.fa-pencil hover appear/disappear animation*/
+.myList .fa-pencil {
+    opacity: 0;
+}
+.myList .fa-pencil.hovered {
+    opacity: 1;
+}
+.myList .fa-pencil {
+    transition: 1s;
+}
+/*!*.myList gear rotate*!*/
+/*.myList .fa-cog:hover {*/
+    /*transform: rotate(360deg);*/
+    /*transition: 5s;*/
+/*}*/
+

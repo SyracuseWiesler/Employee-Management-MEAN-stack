@@ -1,0 +1,136 @@
+html, body {
+    background: black;
+    height: 100%;
+}
+.container {
+    background: white;
+    /*height: 500px;*/
+}
+.myList table {
+    /*text-align: center;*/
+    vertical-align: middle;
+}
+/*.myList tr {*/
+    /*height: 100px;*/
+    /*line-height: 100px;*/
+    /*vertical-align: middle;*/
+/*}*/
+.myList tr:nth-child(1) {
+    height: auto;
+    line-height: inherit;
+}
+.myList table tr td {
+    height: 100px;
+    /*line-height: 100px;*/
+    vertical-align: middle;
+    font-size: 18px;
+    font-weight: bold;
+    overflow: hidden;
+}
+.myList tr td:nth-child(6), .myList tr td:nth-child(7), .myList tr th:nth-child(7) {
+    text-align: center;
+}
+
+.myList table tr td img {
+    font-size: 12px;
+}
+.myList table .fa-trash {
+    font-size: 20px;
+}
+.myList table .fa-trash:hover {
+    transition: 0.5s;
+    font-size: 24px;
+    cursor: pointer;
+    color: rgb(190, 5, 3);
+}
+.myList table td a {
+    text-decoration: none;
+}
+.myList button.create {
+    /*position: relative;*/
+    /*top: 35px;*/
+    /*left: 6%;*/
+}
+.myList #search1 {
+    /*position: relative;*/
+    height: 34px;
+    /*top: 35px;*/
+    /*left: 71%;*/
+}
+.myList .fa-user-plus {
+    margin-right: 5px;
+}
+.myList .fa-pencil {
+    margin-left: 5px;
+}
+
+.myList .fa-sort-alpha-asc,
+.myList .fa-sort-alpha-desc,
+.myList .fa-sort-numeric-asc,
+.myList .fa-sort-numeric-desc {
+    margin: 0 3px;
+}
+.myList .fa-sort-alpha-asc:hover,
+.myList .fa-sort-alpha-desc:hover,
+.myList .fa-sort-numeric-asc:hover,
+.myList .fa-sort-numeric-desc:hover,
+.myList .fa-pencil:hover,
+.viewPage input:hover,
+.viewPage .others:hover{
+    cursor: pointer;
+    background: whitesmoke;
+}
+.viewPage input {
+    background: navajowhite;
+    font-weight: bold;
+}
+.myList .fa-sort-alpha-asc.active,
+.myList .fa-sort-alpha-desc.active,
+.myList .fa-sort-numeric-asc.active,
+.myList .fa-sort-numeric-desc.active {
+    color: orange;
+}
+
+
+.editPage,
+.createPage,
+.viewPage {
+    height: 100%;
+}
+.editPage record div,
+.createPage record div,
+.viewPage record div {
+    /*background: red;*/
+    height: 20px;
+    margin: 10px 0;
+}
+
+.viewPage .others {
+    background: navajowhite; height: 26px;
+    display: inline-block;
+    border-left: 2px solid rgb(154, 154, 154);
+    border-top: 2px solid rgb(154, 154,154);
+    border-bottom: 2px solid whitesmoke;
+    border-right: 2px solid whitesmoke;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+    margin: 1.5px 0;
+}
+.viewPage #email:hover{
+    text-decoration: none;
+}
+
+.editPage .fa-upload,
+.createPage .fa-upload{
+    font-size: 16px;
+    opacity: 1;
+    transition: 0.5s;
+}
+.editPage .fa-upload:hover,
+.createPage .fa-upload:hover{
+    cursor: pointer;
+    opacity: 0.8;
+    font-size: 22px;
+    transition: 0.5s;
+}
